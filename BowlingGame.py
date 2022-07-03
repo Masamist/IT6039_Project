@@ -1,6 +1,6 @@
 class BowlingGame:
     def __init__(self):
-        # hold all result of rolls for one Ten-Pin bowling game
+        # hold all results of rolls for one Ten-Pin bowling game
         self.rolls = []
 
     def roll(self, pins):
@@ -20,7 +20,7 @@ class BowlingGame:
         for frameIndex in range(10):
 
             # Debug:
-            # passing value of all conditions are incorrect
+            # passing value of all conditions that are incorrect
             # when you add the value in result, it should be (rollIndex) ->(self.rolls[rollIndex])
             # e.g., + strikeScore(self.rolls[rollIndex])
 
@@ -28,11 +28,11 @@ class BowlingGame:
             totalPinsInFrame = self.rolls[rollIndex] + self.rolls[rollIndex + 1]
 
             # Strike condition
-            # if the first role's score is 10 pins, this means strike
+            # if the first roll's score is 10 pins, this means strike
             if self.rolls[rollIndex] == 10:
                 # calculate the strike score
                 # this "totalPinsInFrame" is included in the next frame's first roll,
-                # so adding the next frame's second is a strike score
+                # so adding the next frame's second roll is a strike score
                 result += totalPinsInFrame + self.rolls[rollIndex + 2]
                 # add 1 to rollIndex for moving onto next roll calculation
                 rollIndex += 1
@@ -41,9 +41,9 @@ class BowlingGame:
                 # Normal frame score and Spare condition
                 result += totalPinsInFrame
                 # Checking Spare condition
-                # Adding the both first and second frame's score equal 10, then this is spare.
+                # Adding both first and second frame's score equal 10, then this is spare.
                 if totalPinsInFrame == 10:
-                    # If it is spare, get extra point of the first roll in the nest frame
+                    # If it is spare, get extra point of the first roll in the next frame
                     result += self.rolls[rollIndex + 2]
                 # add 2 to rollIndex for moving onto next roll calculation
                 rollIndex += 2
@@ -51,8 +51,8 @@ class BowlingGame:
         return result
 
     # Refactor:
-    # These Five checking condition method is simply added to the original if statement
-    # to reduce unnecessary methods
+    # These five functions are simply added to the original if statement
+    # to remove unnecessary function
 
     # def isStrike(self, rollIndex):
     #     return self.rolls[rollIndex] == 10

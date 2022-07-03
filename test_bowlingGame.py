@@ -9,25 +9,25 @@ class TestBowlingGame(unittest.TestCase):
     # Debug:
     # All self.game.rolls -> roll as the function name is incorrect
 
-    # test for scores were 0 in all frames
+    # test for game with all gutters
     def testGutterGame(self):
         for i in range(0, 20):
             self.game.roll(0)
         self.assertEqual(self.game.score(), 0)
 
-    # test for all score were 1 in all frames
+    # test for game with all single roll score is one
     def testAllOnes(self):
         self.rollMany(1, 20)
         self.assertEqual(self.game.score(), 20)
 
-    # test for one spare and all 0 score of 9 frames
+    # test for game with one spare and all the others are 0
     def testOneSpare(self):
         self.rollMany(5, 2)
         self.game.roll(3)
         self.rollMany(0, 17)
         self.assertEqual(self.game.score(), 16)
 
-    # test for one strike and all 0 score of 9 frames
+    # test for game with one strike and all the others are 0
     def testOneStrike(self):
         self.game.roll(10)
         self.game.roll(4)
@@ -35,36 +35,36 @@ class TestBowlingGame(unittest.TestCase):
         self.rollMany(0, 16)
         self.assertEqual(self.game.score(), 24)
 
-    # test for score including one spare and one strike
+    # test for game with one strike and one spare and all the others are 0
     def testOneSpareOneStrike(self):
         self.game.roll(10)
         self.rollMany(5, 2)
         self.rollMany(0, 16)
         self.assertEqual(self.game.score(), 30)
 
-    # test for all scores were strikes in all frames
+    # test for game with all strikes
     def testPerfectGame(self):
         self.rollMany(10, 12)
         self.assertEqual(self.game.score(), 300)
 
-    # test for all score were spare in all frames
+    # test for game with all spares
     def testAllSpare(self):
         self.rollMany(5, 21)
         self.assertEqual(self.game.score(), 150)
 
-    # test for 0 score until 8th frame, then two spares
+    # test for game with 0 score until 8th frame, then two spares
     def testLastTwoSpare(self):
         self.rollMany(0, 16)
         self.rollMany(5, 5)
         self.assertEqual(self.game.score(), 30)
 
-    # test for 0 score until 8th frame, then four strikes
+    # test for game with 0 score until 8th frame, then Four strikes.
     def testLastForeStrike(self):
         self.rollMany(0, 16)
         self.rollMany(10, 4)
         self.assertEqual(self.game.score(), 60)
 
-    # Exception test for input validation of a number of pins knock down is equal or less than 10
+    # Validation test for input of number of pins before adding into the Array called rolls
     def testError(self):
         self.assertRaises(Exception, self.game.roll, 50)
 
